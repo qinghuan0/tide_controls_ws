@@ -11,7 +11,7 @@
 *  运行仿真：```ros2 launch tide_ctrl_bringup tide_ctrl_bringup.launch.py sim_mode:=true robot_type:=sentry world:=RMUL2025```(机器人类型和gazebo地图模型修改为你需要的)
 *  ⚠️运行实车：```ros2 launch tide_ctrl_bringup tide_ctrl_bringup.launch.py sim_mode:=false robot_type:=sentry```
 
-⚠️：运行实车前，请将兵种_real.xacro中的```need_calibration```参数设置为```true```开启校准模式，手动将云台摆放到你期望的初始位置，将终端输出结果填到对应电机关节的```offset```参数（较烦琐待优化）
+⚠️：第一次运行实车前，请将兵种_real.xacro中的```need_calibration```参数设置为```true```开启校准模式，手动将云台摆放到你期望的初始位置，将终端输出结果填到对应电机关节的```offset```参数（较烦琐待优化），否则会有疯车风险！！
 
 
 ## 安装依赖
