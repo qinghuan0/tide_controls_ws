@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sentry">
+  <xacro:include filename="$(find tide_robot_description)/urdf/base/sentry_description_base.urdf.xacro" />
+
+  <!-- IMU -->
+  <link name="imu_link"/>
+
+  <joint name="imu_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.31" rpy="${pi} 0 0"/>
+    <parent link="bigyaw_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <!-- Drive controller plugin-->
+  <!-- https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-Planar-Move -->
+  <gazebo>
+    <plugin name="mecanum_controller" filename="libgazebo_ros_planar_move.so">
+      <ros>
+        <!-- Add a namespace -->
+        <namespace>/</namespace>
+        <!-- Remap the default topic -->
+        <remapping>cmd_vel:=cmd_vel_chassis</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+
+      <!-- Set control loop update rate -->
+      <update_rate>1000</update_rate>
+      <!-- Set odom publish rate -->
+      <publish_rate>1000</publish_rate>
+
+      <!-- Set if odom required -->
+      <publish_odom>false</publish_odom>
+      <publish_odom_tf>false</publish_odom_tf>
+
+      <!-- Frame IDs -->
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+
+      <!-- Set odom covariance -->
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
+    </plugin>
+  </gazebo>
+
+  <!-- mid360_imu plugin -->
+  <!-- https://github.com/ros-simulation/gazebo_ros_pkgs/wiki/ROS-2-Migration:-IMU-Sensors -->
+  <gazebo reference="imu_link">
+    <sensor name="mid360_imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <namespace>/</namespace>
+          <remapping>~/out:=/livox/imu</remapping>
+        </ros>
+        <frame_name>imu_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <parameters>$(find tide_ctrl_bringup)/config/sentry/sentry_sim.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- Livox-Mid360  -->
+  <!-- <xacro:include filename="$(find ros2_livox_simulation)/urdf/mid360.xacro" />
+  <xacro:mid360 name="livox_frame" parent="base_link" topic="/livox/lidar">
+    <origin xyz="0 0 0.55" rpy="${pi} 0 0"/>
+  </xacro:mid360> -->
+
+</robot>

@@ -1,0 +1,8 @@
+<library path="tide_shooter_controller">
+    <class name="tide_shooter_controller/TideShooterController"
+            type="tide_shooter_controller::TideShooterController" base_class_type="controller_interface::ControllerInterface">
+    <description>
+        shooter controller to tide robot.
+    </description>
+    </class>
+</library>

@@ -1,0 +1,9 @@
+uint16 teammate_hero
+uint16 teammate_infantry3
+uint16 teammate_infantry4
+uint16 teammate_infantry5
+uint16 teammate_sentry
+uint16 client_hero
+uint16 client_infantry3
+uint16 client_infantry4
+uint16 client_infantry5

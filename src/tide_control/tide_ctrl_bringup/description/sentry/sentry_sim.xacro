@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sentry">
+    <xacro:include filename="$(find tide_robot_description)/urdf/sim/sentry_description_sim.urdf.xacro" />
+    <ros2_control name="GazeboSystem" type="system">
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <joint name="bigyaw_joint">
+            <command_interface name="position"/>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="pitch1_joint">
+            <command_interface name="position"/>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="pitch2_joint">
+            <command_interface name="position"/>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="yaw1_joint">
+            <command_interface name="position"/>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="yaw2_joint">
+            <command_interface name="position"/>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel1_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel2_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel3_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel4_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="loader1_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="loader2_joint">
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+</robot>

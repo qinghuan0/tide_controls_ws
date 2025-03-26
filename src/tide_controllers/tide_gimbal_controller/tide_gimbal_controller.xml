@@ -1,0 +1,8 @@
+<library path="tide_gimbal_controller">
+    <class name="tide_gimbal_controller/TideGimbalController"
+            type="tide_gimbal_controller::TideGimbalController" base_class_type="controller_interface::ControllerInterface">
+    <description>
+        gimbal controller to tide robot.
+    </description>
+    </class>
+</library>

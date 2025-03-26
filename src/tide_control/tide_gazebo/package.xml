@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>tide_gazebo</name>
+  <version>1.0.0</version>
+  <description>
+    Gazebo simulation package for the RM
+  </description>
+  <maintainer email="1484237245@qq.com">qinghuan</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>gazebo_ros_pkgs</depend>
+  <depend>tide_robot_description</depend>
+
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <gazebo_ros
+      gazebo_model_path="${prefix}/meshes"
+      gazebo_plugin_path="${prefix}/plugins"
+    />
+  </export>
+</package>

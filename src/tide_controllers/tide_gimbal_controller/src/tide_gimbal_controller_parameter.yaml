@@ -1,0 +1,182 @@
+tide_gimbal_controller:
+  open_loop: {
+    type: bool,
+    default_value: false,
+    description: "Open loop control"
+  }
+  use_external_state_interface: {
+    type: bool,
+    default_value: false,
+    description: "Use external state interface"
+  }
+  pitch:
+    joint: {
+      type: string,
+      default_value: "",
+      description: "Joint names of the pitch joints",
+      validation: {
+        not_empty<>: []
+      }
+    }
+    max: {
+      type: double,
+      default_value: 0.0,
+      description: "Maximum pitch angle"
+    }
+    min: {
+      type: double,
+      default_value: 0.0,
+      description: "Minimum pitch angle"
+    }
+    scan_add: {
+      type: double,
+      default_value: 0.001,
+      description: "For sentry scan mode"
+    }
+    scan_range: {
+      type: double_array,
+      default_value: [0.0, 0.0],
+      description: "For sentry scan mode"
+    }
+    reverse: {
+      type: bool,
+      default_value: false,
+      description: "Reverse direction of the pitch motor"
+    }
+    pid:
+      p: {
+        type: double,
+        default_value: 0.0,
+        description: "Proportional gain"
+      }
+      i: {
+        type: double,
+        default_value: 0.0,
+        description: "Integral gain"
+      }
+      d: {
+        type: double,
+        default_value: 0.0,
+        description: "Derivative gain"
+      }
+      i_clamp_max: {
+        type: double,
+        default_value: 0.0,
+        description: "Upper integral clamp."
+      }
+      i_clamp_min: {
+        type: double,
+        default_value: 0.0,
+        description: "Lower integral clamp."
+      }
+      antiwindup: {
+        type: bool,
+        default_value: false,
+        description: "Antiwindup functionality. When set to true, limits
+        the integral error to prevent windup; otherwise, constrains the
+        integral contribution to the control output. i_clamp_max and
+        i_clamp_min are applied in both scenarios."
+      }
+
+  yaw:
+    joint: {
+      type: string,
+      default_value: "",
+      description: "Joint names of the yaw joints",
+      validation: {
+        not_empty<>: []
+      }
+    }
+    max: {
+      type: double,
+      default_value: 0.0,
+      description: "Maximum yaw angle"
+    }
+    min: {
+      type: double,
+      default_value: 0.0,
+      description: "Minimum yaw angle"
+    }
+    scan_add: {
+      type: double,
+      default_value: 0.005,
+      description: "For sentry scan mode"
+    }
+    scan_range: {
+      type: double_array,
+      default_value: [0.0, 0.0],
+      description: "For sentry scan mode"
+    }
+    reverse: {
+      type: bool,
+      default_value: false,
+      description: "Reverse direction of the yaw motor"
+    }
+    pid:
+      p: {
+        type: double,
+        default_value: 0.0,
+        description: "Proportional gain"
+      }
+      i: {
+        type: double,
+        default_value: 0.0,
+        description: "Integral gain"
+      }
+      d: {
+        type: double,
+        default_value: 0.0,
+        description: "Derivative gain"
+      }
+      i_clamp_max: {
+        type: double,
+        default_value: 0.0,
+        description: "Upper integral clamp."
+      }
+      i_clamp_min: {
+        type: double,
+        default_value: 0.0,
+        description: "Lower integral clamp."
+      }
+      antiwindup: {
+        type: bool,
+        default_value: false,
+        description: "Antiwindup functionality. When set to true, limits
+        the integral error to prevent windup; otherwise, constrains the
+        integral contribution to the control output. i_clamp_max and
+        i_clamp_min are applied in both scenarios."
+      }
+
+  bullet_solver:
+    g: {
+      type: double,
+      default_value: 9.81,
+      description: "Gravity"
+    }
+    resistance_coff : {
+      type: double,
+      default_value: 0.0,
+      description: "Resistance coefficient"
+    }
+    cam_offset: {
+      type: double_array,
+      default_value: [0.0, 0.0, 0.0],
+      description: "Camera height"
+    }
+    time_delay: {
+      type: double,
+      default_value: 0.0,
+      description: "Time delay"
+    }
+
+  tracker_topic: {
+    type: string_array,
+    default_value: [],
+    description: "Topic name for the tracker"
+  }
+
+  shooter_cmd_topic: {
+    type: string,
+    default_value: "",
+    description: "Topic name for the shooter cmd"
+  }

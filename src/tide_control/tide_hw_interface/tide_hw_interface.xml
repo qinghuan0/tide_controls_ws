@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="tide_hw_interface">
+  <class name="tide_hw_interface/TideHardwareInterface"
+         type="tide_hw_interface::TideHardwareInterface"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware Interface for Tide robot motors using ros2_control.
+    </description>
+  </class>
+</library>

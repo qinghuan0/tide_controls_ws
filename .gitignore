@@ -1,0 +1,6 @@
+build/
+install/
+log/
+.idea/
+.vscode/c_cpp_properties.json
+.vscode/settings.json
