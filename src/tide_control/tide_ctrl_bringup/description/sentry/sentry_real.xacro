@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sentry">
+    <xacro:include filename="$(find tide_robot_description)/urdf/base/sentry_description_base.urdf.xacro" />
+    <ros2_control name="TideHardwareInterface" type="system">
+        <hardware>
+            <plugin>tide_hw_interface/TideHardwareInterface</plugin>
+            <param name="enable_virtual_control">false</param>
+            <param name="need_calibration">false</param>
+            <param name="can_device_count">2</param>
+        </hardware>
+
+        <joint name="bigyaw_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">666</param>
+            <param name="offset">777</param>
+            <param name="motor_type">VIRTUAL_JOINT</param>
+
+            <command_interface name="position"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="pitch1_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">3</param>
+            <param name="offset">4649</param>
+            <param name="motor_type">GM6020</param>
+
+            <command_interface name="position"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="pitch2_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">1</param>
+            <param name="offset">2047</param>
+            <param name="motor_type">GM6020</param>
+
+            <command_interface name="position"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="yaw1_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">4</param>
+            <param name="offset">4282</param>
+            <param name="motor_type">GM6020</param>
+
+            <command_interface name="position"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="yaw2_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">2</param>
+            <param name="offset">6668</param>
+            <param name="motor_type">GM6020</param>
+
+            <command_interface name="position"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="friction_wheel1_joint">
+            <param name="can_bus">can1</param>
+            <param name="tx_id">4</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M3508</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel2_joint">
+            <param name="can_bus">can1</param>
+            <param name="tx_id">5</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M3508</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel3_joint">
+            <param name="can_bus">can1</param>
+            <param name="tx_id">1</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M3508</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="friction_wheel4_joint">
+            <param name="can_bus">can1</param>
+            <param name="tx_id">2</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M3508</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="loader1_joint">
+            <param name="can_bus">can1</param>
+            <param name="tx_id">6</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M2006</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="loader2_joint">
+            <param name="can_bus">can0</param>
+            <param name="tx_id">2</param>
+            <param name="offset">0</param>
+            <param name="motor_type">M2006</param>
+
+            <command_interface name="velocity"></command_interface>
+
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+</robot>

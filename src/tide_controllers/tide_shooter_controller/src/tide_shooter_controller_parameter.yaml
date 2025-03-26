@@ -1,0 +1,113 @@
+tide_shooter_controller:
+  open_loop: {
+    type: bool,
+    default_value: true,
+    description: "Open loop control"
+  }
+
+  referee_shooter_type: {
+    type: string,
+    default_value: "",
+    description: "Referee shooter type"
+  }
+
+  friction_wheels:
+    joint: {
+      type: string_array,
+      default_value: [],
+      description: "Friction wheels names",
+      read_only: true,
+      validation: {
+        not_empty<>: null,
+      }
+    }
+    reverse: {
+      type: string_array,
+      default_value: [],
+      description: "Reverse direction of the friction wheels"
+    }
+    pid:
+      p: {
+        type: double,
+        default_value: 0.0,
+        description: "Proportional gain for PID"
+      }
+      i: {
+        type: double,
+        default_value: 0.0,
+        description: "Integral gain for PID"
+      }
+      d: {
+        type: double,
+        default_value: 0.0,
+        description: "Derivative gain for PID"
+      }
+      antiwindup: {
+        type: bool,
+        default_value: false,
+        description: "Antiwindup functionality. When set to true, limits
+        the integral error to prevent windup; otherwise, constrains the
+        integral contribution to the control output. i_clamp_max and
+        i_clamp_min are applied in both scenarios."
+      }
+      i_clamp_max: {
+        type: double,
+        default_value: 0.0,
+        description: "Upper integral clamp."
+      }
+      i_clamp_min: {
+        type: double,
+        default_value: 0.0,
+        description: "Lower integral clamp."
+      }
+
+  loader:
+    joint: {
+      type: string,
+      default_value: "",
+      description: "Loader motor name",
+      read_only: true,
+      validation: {
+        not_empty<>: []
+      }
+    }
+    reverse: {
+      type: bool,
+      default_value: false,
+      description: "Reverse direction of the loader"
+    }
+
+    pid:
+      p: {
+        type: double,
+        default_value: 0.0,
+        description: "Proportional gain for PID"
+      }
+      i: {
+        type: double,
+        default_value: 0.0,
+        description: "Integral gain for PID"
+      }
+      d: {
+        type: double,
+        default_value: 0.0,
+        description: "Derivative gain for PID"
+      }
+      antiwindup: {
+        type: bool,
+        default_value: false,
+        description: "Antiwindup functionality. When set to true, limits
+        the integral error to prevent windup; otherwise, constrains the
+        integral contribution to the control output. i_clamp_max and
+        i_clamp_min are applied in both scenarios."
+      }
+      i_clamp_max: {
+        type: double,
+        default_value: 0.0,
+        description: "Upper integral clamp."
+      }
+      i_clamp_min: {
+        type: double,
+        default_value: 0.0,
+        description: "Lower integral clamp."
+      }

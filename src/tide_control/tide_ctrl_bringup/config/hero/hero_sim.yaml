@@ -1,0 +1,35 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+
+    gimbal_controller:
+      type: "tide_gimbal_controller/TideGimbalController"
+
+gimbal_controller:
+  ros__parameters:
+    open_loop: true
+    shooter_cmd_topic: "/shooter_controller/shooter_cmd"
+    tracker_topic: 
+      - /cam0/tracker/target
+      
+    pitch:
+      joint: "pitch_joint"
+      max: 0.28
+      min: -0.28
+      scan_range: [-0.24, 0.24]
+      scan_add: 0.001
+
+    yaw:
+      joint: "yaw_joint"
+      max: 1.47
+      min: -1.47
+      scan_range: [-1.47, 1.47]
+      scan_add: 0.0015
+      
+    bullet_solver:
+      g: 9.81
+      resistance_coff: 0.01
+      cam_offset: [0.38, 0.0, 0.6]

@@ -1,0 +1,134 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+
+    bigyaw_controller:
+      type: "tide_bigyaw_controller/TideBigYawController"
+
+    left_gimbal_controller:
+      type: "tide_gimbal_controller/TideGimbalController"
+
+    right_gimbal_controller:
+      type: "tide_gimbal_controller/TideGimbalController"
+
+    left_shooter_controller:
+      type: "tide_shooter_controller/TideShooterController"
+
+    right_shooter_controller:
+      type: "tide_shooter_controller/TideShooterController"
+
+# open_loop := false时使用gazebo pid控制器
+gazebo_ros2_control:
+  ros__parameters:
+    pid_gains:
+      position:
+        bigyaw_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        pitch1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        pitch2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        yaw1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        yaw2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+      velocity:
+        friction_wheel1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        friction_wheel2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        friction_wheel3_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        friction_wheel4_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        loader1_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+        loader2_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+
+bigyaw_controller:
+  ros__parameters:
+    open_loop: true
+    bigyaw_joint: "bigyaw_joint"
+    left_gimbal_state_topic: "/left_gimbal_controller/gimbal_state"
+    right_gimbal_state_topic: "/right_gimbal_controller/gimbal_state"
+
+left_gimbal_controller:
+  ros__parameters:
+    open_loop: true
+    shooter_cmd_topic: "/left_shooter_controller/shooter_cmd"
+    tracker_topic: 
+      - /cam1/tracker/target
+
+    pitch:
+      joint: "pitch2_joint"
+      max: 0.26
+      min: -0.26
+      scan_range: [-0.24, 0.24]
+      scan_add: 0.001
+      reverse: true
+
+    yaw:
+      joint: "yaw2_joint"
+      max: 3.14
+      min: -0.25
+      scan_range: [-0.25, 2.6]
+      scan_add: 0.0015
+
+    bullet_solver:
+      g: 9.81
+      resistance_coff: 0.01
+      cam_offset: [0.38, 0.1, 0.38]
+      time_delay: 0.1
+
+right_gimbal_controller:
+  ros__parameters:
+    open_loop: true
+    shooter_cmd_topic: "/right_shooter_controller/shooter_cmd"
+    tracker_topic: 
+      - /cam0/tracker/target
+
+    pitch:
+      joint: "pitch1_joint"
+      max: 0.26
+      min: -0.26
+      scan_range: [-0.24, 0.24]
+      scan_add: 0.001
+      reverse: true
+      
+    yaw:
+      joint: "yaw1_joint"
+      max: 0.25
+      min: -3.14
+      scan_range: [-2.6, 0.25]
+      scan_add: 0.0015
+
+    bullet_solver:
+      g: 9.81
+      resistance_coff: 0.01
+      cam_offset: [0.38, -0.1, 0.38]
+      time_delay: 0.1
+
+left_shooter_controller:
+  ros__parameters:
+    open_loop: true
+
+    friction_wheels:
+      joint:
+          - friction_wheel3_joint
+          - friction_wheel4_joint
+
+      reverse:
+          - friction_wheel4_joint
+
+    loader:
+      joint: "loader2_joint"
+      reverse: true
+
+right_shooter_controller:
+  ros__parameters:
+    open_loop: true
+
+    friction_wheels:
+      joint:
+          - friction_wheel1_joint
+          - friction_wheel2_joint
+
+      reverse:
+          - friction_wheel2_joint
+
+    loader:
+      joint: "loader1_joint"
+      reverse: true

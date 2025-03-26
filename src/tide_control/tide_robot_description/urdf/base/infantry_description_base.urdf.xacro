@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="infantry">
+  <link name="odom"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0133822122274644 -0.00809692550539322 0.0467633854297287" rpy="0 0 0" />
+      <mass value="4.36001632721679" />
+      <inertia ixx="0.00614130513621713" ixy="-0.000353875591663386" ixz="-1.09996850336555E-06" iyy="0.00520951106351427" iyz="-3.25490088094424E-06" izz="0.00745233056439193" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="odom" />
+    <child link="base_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="yaw_link">
+    <inertial>
+      <origin xyz="0.00921864895270009 -0.00924963895011628 0.0584703234652374" rpy="0 0 0" />
+      <mass value="0.834985960306116" />
+      <inertia ixx="0.00120365535248609" ixy="-1.01658775148229E-05" ixz="0.00011526949756583" iyy="0.00151255698988424" iyz="-1.22508831713179E-06" izz="0.0012424326823798" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/yaw_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="yaw_joint" type="continuous">
+    <origin xyz="0.00207976334663193 -0.00811150580044382 0.15079999999999" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="yaw_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="pitch_link">
+    <inertial>
+      <origin xyz="0.072263496343535 0.0738849952398557 0.00506998843972692" rpy="0 0 0" />
+      <mass value="0.385731015614247" />
+      <inertia ixx="0.000221170378968134" ixy="5.82839660487207E-06" ixz="3.24083882923884E-07" iyy="0.000306046762977478" iyz="4.94549511557746E-08" izz="0.000467632634058891" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/pitch_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pitch_joint" type="continuous">
+    <origin xyz="0.0100231990979598 -0.0744269555799036 0.178" rpy="0 0 0.0166651237138682" />
+    <parent link="yaw_link" />
+    <child link="pitch_link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="cam0_link">
+    <inertial>
+      <origin xyz="-2.26371515610335E-06 -0.00115501279029628 -0.0485854256141367" rpy="0 0 0" />
+      <mass value="0.0654141652742111" />
+      <inertia ixx="5.75977510357593E-05" ixy="-1.9366713453424E-09" ixz="-8.32408956623181E-09" iyy="5.75543225735851E-05" iyz="-3.58238483486342E-06" izz="7.93676188622528E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/cam0_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/cam0_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="cam0_joint" type="fixed">
+    <origin xyz="0.145 0.140 0.0507499999999996" rpy="-1.5707963267949 0 -1.50006086416606" />
+    <parent link="pitch_link" />
+    <child link="cam0_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="friction_wheel1_link">
+    <inertial>
+      <origin xyz="2.77555756156289E-17 -6.93889390390723E-18 -0.00911046486076328" rpy="0 0 0" />
+      <mass value="0.0243266105173026" />
+      <inertia ixx="8.00378393317945E-06" ixy="-6.28089360798954E-10" ixz="-2.08652239258242E-21" iyy="8.00356243497824E-06" iyz="-2.51186345020143E-21" izz="1.4907763659529E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/friction_wheel1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/friction_wheel1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel1_joint" type="continuous">
+    <origin xyz="0.0558539097178407 0.11078461431639 0.0107499999999996" rpy="0 0 -0.0166651237138691" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel1_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="friction_wheel2_link">
+    <inertial>
+      <origin xyz="-2.77555756156289E-17 6.93889390390723E-18 -0.00911046486076333" rpy="0 0 0" />
+      <mass value="0.0243266105173026" />
+      <inertia ixx="8.00419347745647E-06" ixy="3.6885825142472E-10" ixz="-1.29702312626127E-21" iyy="8.00315289070124E-06" iyz="-7.24358552252807E-21" izz="1.4907763659529E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/friction_wheel2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/infantry/friction_wheel2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel2_joint" type="continuous">
+    <origin xyz="0.0546207476451302 0.0367948899534589 0.0107499999999995" rpy="0 0 -0.0166651237138691" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel2_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+</robot>

@@ -1,0 +1,16 @@
+uint16 red1robot_hp
+uint16 red2robot_hp
+uint16 red3robot_hp
+uint16 red4robot_hp
+uint16 reserved1
+uint16 red7robot_hp
+uint16 redoutpost_hp
+uint16 redbase_hp
+uint16 blue1robot_hp
+uint16 blue2robot_hp
+uint16 blue3robot_hp
+uint16 blue4robot_hp
+uint16 reserved2
+uint16 blue7robot_hp
+uint16 blueoutpost_hp
+uint16 bluebase_hp

@@ -1,0 +1,188 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+
+    bigyaw_controller:
+      type: "tide_bigyaw_controller/TideBigYawController"
+
+    left_gimbal_controller:
+      type: "tide_gimbal_controller/TideGimbalController"
+
+    right_gimbal_controller:
+      type: "tide_gimbal_controller/TideGimbalController"
+
+    left_shooter_controller:
+      type: "tide_shooter_controller/TideShooterController"
+
+    right_shooter_controller:
+      type: "tide_shooter_controller/TideShooterController"
+
+bigyaw_controller:
+  ros__parameters:
+    open_loop: true
+    use_external_state_interface: true
+    bigyaw_joint: "bigyaw_joint"
+    left_gimbal_state_topic: "/left_gimbal_controller/gimbal_state"
+    right_gimbal_state_topic: "/right_gimbal_controller/gimbal_state"
+    perception_topic: "/cam2/tracker/target"
+
+    pid:
+      p: 0.0
+      i: 0.0
+      d: 0.0
+      i_clamp_max: 0.0
+      i_clamp_min: 0.0
+      antiwindup: true
+
+left_gimbal_controller:
+  ros__parameters:
+    open_loop: false
+    shooter_cmd_topic: "/left_shooter_controller/shooter_cmd"
+    tracker_topic: 
+      - /cam1/tracker/target
+      
+    pitch:
+      joint: "pitch2_joint"
+      max: 0.26
+      min: -0.26
+      scan_range: [-0.18, 0.12]
+      scan_add: 0.0011
+      reverse: true
+      pid:
+        p: 60000.0
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 50000.0
+        i_clamp_min: -50000.0
+        antiwindup: true
+
+    yaw:
+      joint: "yaw2_joint"
+      max: 2.3
+      min: -0.25
+      scan_range: [-0.25, 1.4]
+      scan_add: 0.0013
+      pid:
+        p: 30000.0
+        i: 10.0
+        d: 20.0
+        i_clamp_max: 75.0
+        i_clamp_min: -75.0
+        antiwindup: true
+
+    bullet_solver:
+      g: 9.81
+      resistance_coff: 0.001
+      cam_offset: [0.15, 0.14, 0.52]
+      time_delay: 0.02
+
+right_gimbal_controller:
+  ros__parameters:
+    open_loop: false
+    shooter_cmd_topic: "/right_shooter_controller/shooter_cmd"
+    tracker_topic: 
+      - /cam0/tracker/target
+
+    pitch:
+      joint: "pitch1_joint"
+      max: 0.26
+      min: -0.26
+      scan_range: [-0.18, 0.12]
+      scan_add: 0.0011
+      reverse: true
+      pid:
+        p: 60000.0
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 50000.0
+        i_clamp_min: -50000.0
+        antiwindup: true
+
+    yaw:
+      joint: "yaw1_joint"
+      max: 0.25
+      min: -2.3
+      scan_range: [-1.4, 0.25]
+      scan_add: 0.0013
+      pid:
+        p: 30000.0
+        i: 10.0
+        d: 20.0
+        i_clamp_max: 75.0
+        i_clamp_min: -75.0
+        antiwindup: true
+
+    bullet_solver:
+      g: 9.81
+      resistance_coff: 0.001
+      cam_offset: [0.15, -0.14, 0.52]
+      time_delay: 0.02
+
+left_shooter_controller:
+  ros__parameters:
+    open_loop: false
+    referee_shooter_type: id1_17mm
+
+    friction_wheels:
+      joint:
+          - friction_wheel3_joint
+          - friction_wheel4_joint
+
+      reverse:
+          - friction_wheel4_joint
+
+      pid:
+        p: 35.0
+        i: 6.0
+        d: 0.0
+        i_clamp_max: 50.0
+        i_clamp_min: -50.0
+        antiwindup: false
+
+    loader:
+      joint: "loader2_joint"
+      reverse: true
+
+      pid:
+        p: 55.0
+        i: 6.0
+        d: 0.0
+        i_clamp_max: 300.0
+        i_clamp_min: -300.0
+        antiwindup: false
+
+right_shooter_controller:
+  ros__parameters:
+    open_loop: false
+    referee_shooter_type: id2_17mm
+
+    friction_wheels:
+      joint:
+          - friction_wheel1_joint
+          - friction_wheel2_joint
+
+      reverse:
+          - friction_wheel2_joint
+
+      pid:
+        p: 35.0
+        i: 0.5
+        d: 0.0
+        i_clamp_max: 50.0
+        i_clamp_min: -50.0
+        antiwindup: false
+
+    loader:
+      joint: "loader1_joint"
+      reverse: true
+
+      pid:
+        p: 55.0
+        i: 6.0
+        d: 0.0
+        i_clamp_max: 300.0
+        i_clamp_min: -300.0
+        antiwindup: false

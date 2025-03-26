@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由solidworks导出  -->
+
+<robot name="hero">
+
+  <link name="odom"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.000276138738735866 0.00564807973459863 0.0606576860440764" rpy="0 0 0" />
+      <mass value="8.78184637370999" />
+      <inertia ixx="0.0148401995915169" ixy="0.000108738329559126" ixz="9.56360986869471E-05" iyy="0.0486787597290484" iyz="-5.79850122096404E-06" izz="0.0557970041196964" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="odom" />
+    <child link="base_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="yaw_link">
+    <inertial>
+      <origin xyz="-0.021742157944887 0.00267307516394979 0.073861518799458" rpy="0 0 0" />
+      <mass value="0.28719249337078" />
+      <inertia ixx="0.000506616303281996" ixy="8.5370250851231E-06" ixz="7.95180991696996E-05" iyy="0.00059114947186763" iyz="-7.95528226323097E-06" izz="9.79994345641336E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/yaw_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/yaw_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="yaw_joint" type="continuous">
+    <origin xyz="0 0 0.216499999999877" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="yaw_link" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <link name="pitch_link">
+    <inertial>
+      <origin xyz="-0.00916934145870887 -0.00928618985529435 0.0240584344921287" rpy="0 0 0" />
+      <mass value="2.16161612754808" />
+      <inertia ixx="0.00188819608033588" ixy="1.90170138375831E-05" ixz="7.20532483480358E-05" iyy="0.00273782224519966" iyz="1.66613979109365E-06" izz="0.00321725364702273" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/pitch_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="pitch_joint" type="continuous">
+    <origin xyz="0.00383117201995245 0.000563252350000402 0.144999999999997" rpy="0 0 0" />
+    <parent link="yaw_link" />
+    <child link="pitch_link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+
+  <link name="cam0_link"/>
+  <joint name="cam0_joint" type="fixed">
+    <origin xyz="0.0898857089666096 -0.000941658027797158 0.107797961620051" rpy="${-pi/2} 0 ${-pi/2}" />
+    <parent link="pitch_link" />
+    <child link="cam0_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="friction_wheel_lf_link">
+    <inertial>
+      <origin xyz="6.0552165549177E-06 -2.88264036104602E-05 -0.00920703478990675" rpy="0 0 0" />
+      <mass value="0.03598302471577" />
+      <inertia ixx="1.32868340989028E-05" ixy="5.45063745492526E-08" ixz="7.17487764270058E-10" iyy="1.30388010998078E-05" iyz="-3.4156650249482E-09" izz="2.33979778497226E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_lf_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_lf_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel_lf_joint" type="continuous">
+    <origin xyz="0.103433768203839 0.048100339443673 0.011805507063491" rpy="0 0 0" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel_lf_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="friction_wheel_lb_link">
+    <inertial>
+      <origin xyz="6.05521655494545E-06 -2.88264036098426E-05 -0.00920703478962742" rpy="0 0 0" />
+      <mass value="0.0359830247157701" />
+      <inertia ixx="1.32868340989028E-05" ixy="5.45063745492448E-08" ixz="7.17487764255235E-10" iyy="1.30388010998078E-05" iyz="-3.41566502494383E-09" izz="2.33979778497226E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_lb_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_lb_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel_lb_joint" type="continuous">
+    <origin xyz="0.0364337682038387 0.0481003394436472 0.0118055070632364" rpy="0 0 0" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel_lb_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="friction_wheel_rf_link">
+    <inertial>
+      <origin xyz="6.0552165569161E-06 -2.88264036104602E-05 -0.00920703478990648" rpy="0 0 0" />
+      <mass value="0.03598302471577" />
+      <inertia ixx="1.32868340989028E-05" ixy="5.45063745491653E-08" ixz="7.17487761040322E-10" iyy="1.30388010998077E-05" iyz="-3.41566502492988E-09" izz="2.33979778497226E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_rf_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_rf_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel_rf_joint" type="continuous">
+    <origin xyz="0.103433768203875 -0.0498996605563272 0.0118055070634907" rpy="0 0 0" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel_rf_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="friction_wheel_rb_link">
+    <inertial>
+      <origin xyz="6.05521655350216E-06 -2.88264036098287E-05 -0.00920703478962709" rpy="0 0 0" />
+      <mass value="0.0359830247157701" />
+      <inertia ixx="1.32868340989029E-05" ixy="5.45063745490324E-08" ixz="7.174877648147E-10" iyy="1.30388010998077E-05" iyz="-3.41566502495551E-09" izz="2.33979778497226E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_rb_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/friction_wheel_rb_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="friction_wheel_rb_joint" type="continuous">
+    <origin xyz="0.0364337682038749 -0.0498996605563519 0.011805507063236" rpy="0 0 0" />
+    <parent link="pitch_link" />
+    <child link="friction_wheel_rb_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+  <link name="wheel4_link">
+    <inertial>
+      <origin xyz="-4.72790537667522E-05 -7.85677698483811E-07 3.79232936552343E-06" rpy="0 0 0" />
+      <mass value="0.378917632426951" />
+      <inertia ixx="0.000643515850720415" ixy="4.90531617592415E-10" ixz="-1.17186201471246E-09" iyy="0.00117936598073852" iyz="4.21976412702432E-09" izz="0.000643505138444702" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel4_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel4_joint" type="continuous">
+    <origin xyz="-0.214344940540013 0.210000000000001 -0.0567549952817739" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel4_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="wheel3_link">
+    <inertial>
+      <origin xyz="-4.72843741498585E-05 1.1131260380659E-06 3.79022795032186E-06" rpy="0 0 0" />
+      <mass value="0.378914655144934" />
+      <inertia ixx="0.00064351651790532" ixy="-4.58466304023356E-10" ixz="-1.16643652751786E-09" iyy="0.00117936870232796" iyz="-4.24582805310974E-09" izz="0.000643505883244136" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel3_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel3_joint" type="continuous">
+    <origin xyz="-0.214344940540014 -0.209999999999999 -0.0567549952817737" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel3_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="wheel2_link">
+    <inertial>
+      <origin xyz="4.72843739926787E-05 -1.11312600847846E-06 3.7902281159255E-06" rpy="0 0 0" />
+      <mass value="0.378914655144577" />
+      <inertia ixx="0.000643516517908585" ixy="-4.58467268483445E-10" ixz="1.16643534885785E-09" iyy="0.00117936870232729" iyz="4.24582858725684E-09" izz="0.00064350588324011" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel2_joint" type="continuous">
+    <origin xyz="0.214344940540015 0.209999999999999 -0.0567549952817724" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel2_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="wheel1_link">
+    <inertial>
+      <origin xyz="4.72790539559897E-05 7.85677718301292E-07 3.7923292214373E-06" rpy="0 0 0" />
+      <mass value="0.378917632427648" />
+      <inertia ixx="0.000643515850717402" ixy="4.90530792652656E-10" ixz="1.17186288272749E-09" iyy="0.00117936598073986" iyz="-4.21976349863015E-09" izz="0.000643505138449226" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel1_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/wheel1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wheel1_joint" type="continuous">
+    <origin xyz="0.214344940540013 -0.210000000000001 -0.0567549952817722" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="wheel1_link" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="loader_link">
+    <inertial>
+      <origin xyz="-1.33853214933366E-05 1.23776155183583E-05 0.017842570033912" rpy="0 0 0" />
+      <mass value="0.154167522824582" />
+      <inertia ixx="3.38735085671153E-05" ixy="-1.2569898426854E-10" ixz="-8.87359411685707E-09" iyy="3.3854664120204E-05" iyz="1.43390892052874E-09" izz="5.41329914440693E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/loader_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file:///$(find tide_robot_description)/meshes/hero/loader_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="loader_joint" type="continuous">
+    <origin xyz="-0.178995959727407 0 0.0204999999999994" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="loader_link" />
+    <axis xyz="0 0 -1" />
+  </joint>
+
+</robot>
