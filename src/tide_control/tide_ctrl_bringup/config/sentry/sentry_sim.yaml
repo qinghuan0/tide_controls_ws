@@ -5,9 +5,6 @@ controller_manager:
     joint_state_broadcaster:
       type: "joint_state_broadcaster/JointStateBroadcaster"
 
-    bigyaw_controller:
-      type: "tide_bigyaw_controller/TideBigYawController"
-
     left_gimbal_controller:
       type: "tide_gimbal_controller/TideGimbalController"
 
@@ -21,29 +18,22 @@ controller_manager:
       type: "tide_shooter_controller/TideShooterController"
 
 # open_loop := false时使用gazebo pid控制器
-gazebo_ros2_control:
-  ros__parameters:
-    pid_gains:
-      position:
-        bigyaw_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        pitch1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        pitch2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        yaw1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        yaw2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-      velocity:
-        friction_wheel1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        friction_wheel2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        friction_wheel3_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        friction_wheel4_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        loader1_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-        loader2_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
-
-bigyaw_controller:
-  ros__parameters:
-    open_loop: true
-    bigyaw_joint: "bigyaw_joint"
-    left_gimbal_state_topic: "/left_gimbal_controller/gimbal_state"
-    right_gimbal_state_topic: "/right_gimbal_controller/gimbal_state"
+# gazebo_ros2_control:
+#   ros__parameters:
+#     pid_gains:
+#       position:
+#         bigyaw_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         pitch1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         pitch2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         yaw1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         yaw2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#       velocity:
+#         friction_wheel1_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         friction_wheel2_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         friction_wheel3_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         friction_wheel4_joint: {kp:  100.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         loader1_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
+#         loader2_joint: {kp:  0.0, kd: 0.0, ki:  0.0, max_integral_error: 10000.0}
 
 left_gimbal_controller:
   ros__parameters:

@@ -5,7 +5,7 @@
     <ros2_control name="TideHardwareInterface" type="system">
         <hardware>
             <plugin>tide_hw_interface/TideHardwareInterface</plugin>
-            <param name="enable_virtual_control">false</param>
+            <param name="enable_virtual_control">true</param>
             <param name="need_calibration">false</param>
             <param name="can_device_count">2</param>
         </hardware>

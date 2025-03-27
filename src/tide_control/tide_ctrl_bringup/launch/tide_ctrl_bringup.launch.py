@@ -119,22 +119,7 @@ def generate_launch_description():
         condition=UnlessCondition(sim_mode),
     )
 
-    serial_driver_node = Node(
-        package="tide_serial_driver",
-        executable="tide_serial_driver_node",
-        output="both",
-        emulate_tty=True,
-        condition=UnlessCondition(sim_mode),
-    )
     controllers = choose_controllers(robot_type)
-
-    tide_referee_node = Node(
-        package="tide_referee",
-        executable="tide_referee_node",
-        output="both",
-        emulate_tty=True,
-        ros_arguments=["--ros-args"],
-    )
 
     foxglove_node = Node(
         package="foxglove_bridge",
@@ -158,8 +143,6 @@ def generate_launch_description():
             control_node,
             controllers,
             tide_gazebo,
-            tide_referee_node,
-            serial_driver_node,
             foxglove_node,
         ]
     )

@@ -5,9 +5,6 @@ controller_manager:
     joint_state_broadcaster:
       type: "joint_state_broadcaster/JointStateBroadcaster"
 
-    bigyaw_controller:
-      type: "tide_bigyaw_controller/TideBigYawController"
-
     left_gimbal_controller:
       type: "tide_gimbal_controller/TideGimbalController"
 
@@ -20,26 +17,10 @@ controller_manager:
     right_shooter_controller:
       type: "tide_shooter_controller/TideShooterController"
 
-bigyaw_controller:
-  ros__parameters:
-    open_loop: true
-    use_external_state_interface: true
-    bigyaw_joint: "bigyaw_joint"
-    left_gimbal_state_topic: "/left_gimbal_controller/gimbal_state"
-    right_gimbal_state_topic: "/right_gimbal_controller/gimbal_state"
-    perception_topic: "/cam2/tracker/target"
-
-    pid:
-      p: 0.0
-      i: 0.0
-      d: 0.0
-      i_clamp_max: 0.0
-      i_clamp_min: 0.0
-      antiwindup: true
 
 left_gimbal_controller:
   ros__parameters:
-    open_loop: false
+    open_loop: true
     shooter_cmd_topic: "/left_shooter_controller/shooter_cmd"
     tracker_topic: 
       - /cam1/tracker/target
@@ -81,7 +62,7 @@ left_gimbal_controller:
 
 right_gimbal_controller:
   ros__parameters:
-    open_loop: false
+    open_loop: true
     shooter_cmd_topic: "/right_shooter_controller/shooter_cmd"
     tracker_topic: 
       - /cam0/tracker/target
@@ -123,7 +104,7 @@ right_gimbal_controller:
 
 left_shooter_controller:
   ros__parameters:
-    open_loop: false
+    open_loop: true
     referee_shooter_type: id1_17mm
 
     friction_wheels:
@@ -156,7 +137,7 @@ left_shooter_controller:
 
 right_shooter_controller:
   ros__parameters:
-    open_loop: false
+    open_loop: true
     referee_shooter_type: id2_17mm
 
     friction_wheels:

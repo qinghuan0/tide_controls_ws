@@ -30,7 +30,7 @@ def get_world_config(world_type):
         WorldType.RMUL2024: {
             "x": "4.3",
             "y": "3.35",
-            "z": "1.06",
+            "z": "1.1",
             "world_path": "RMUL2024_world/RMUL2024_world.world",
             # 'world_path': 'RMUL2024_world/RMUL2024_world_dynamic_obstacles.world'
         },
